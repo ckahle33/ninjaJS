@@ -70,7 +70,7 @@ console.log(chirp(3));
 //recursive function as an object property
 var ninja = {
 	chirp : function(n){
-		return n > 1 ? ninja.chirp(n - 1) + "-chirp" : "chirp";
+		return n > 1 ? this.chirp(n - 1) + "-chirp" : "chirp";
 	}
 };
 
