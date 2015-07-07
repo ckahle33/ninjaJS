@@ -41,9 +41,6 @@ forEach(weapons, function(index, secondVal, thirdVal){
 	//	assert.ok(this == weapons [index], "Got the expected value of " + weapons [index]);
 	// });
 	
-	console.log(secondVal, thirdVal);
-	
-
 	if (this == weapons[index]) {
 		console.log("Got the expected value of " + weapons[index]);
 	}
@@ -58,21 +55,49 @@ function palindrome(text) {
 	return palindrome(text.substr(1, text.length - 2));
 }
 
-console.log(palindrome('racecar'));
+// console.log(palindrome('racecar'));
 
 //recursive function
 function chirp(n) {
 	return n > 1 ? chirp(n - 1) + "-chirp" : "chirp";
 }
 
-console.log(chirp(3));
+// console.log(chirp(3));
 
-//recursive function as an object property
+//recursive function as an object property -- using this to avoid breaking the function
 var ninja = {
 	chirp : function(n){
 		return n > 1 ? this.chirp(n - 1) + "-chirp" : "chirp";
 	}
 };
+
+var func = function myFunc() {
+
+};
+
+var wow = "casting";
+
+console.log(!!wow, typeof !wow);
+
+
+var store = {
+	nextId: 1,
+	cache: {},
+
+	add: function(fn) {
+		if (!fn.id) {
+			fn.id = store.nextId++;
+			return !!(store.cache[fn.id] = fn);
+		}
+	}
+};
+
+function func() {}
+
+QUnit.test("check how named functions in vars can be called", function(assert){
+	assert.ok(typeof myFunc == "undefined", "It is in fact undefined");
+});
+
 
 QUnit.test("Check that this ninja can chirp", function(assert){
 	assert.ok(ninja.chirp(3) === "chirp-chirp-chirp", "ninja can chirp here");
